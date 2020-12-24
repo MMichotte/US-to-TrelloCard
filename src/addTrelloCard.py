@@ -2,7 +2,6 @@ import sys
 import requests
 from decouple import config
 
-# https://trello.com/app-key
 API_KEY = config("API_KEY")
 OAUTH_TOKEN = config("OAUTH_TOKEN")
 
