@@ -7,5 +7,5 @@
   - [x]ajouter des séparateur '---' entre chaque section
 
 - [x] ajouter label US 
-- [ ] créer un checklist "préconditions"
-- [ ] créer une checklist "validation" 
+- [x] création auto des checklist un checklist 
+- [ ] Ajout d'image
