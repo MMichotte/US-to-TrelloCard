@@ -199,8 +199,8 @@ def readFile(file_path):
             }
             
             list_of_new_cards.append(card)
-        except:
-            pass
+        except Exception as e:
+            print(e)
     
     return list_of_new_cards
 
