@@ -21,4 +21,5 @@ Python script that enables me to convert à User-Story (with a defined structure
     ```
 
 ❗️ The file structure of your .md file must be similar as the first User-Story of the example.md file! 
+
 ❗️ Your Trello list **must** have a label named `US`.
