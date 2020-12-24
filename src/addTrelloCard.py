@@ -8,6 +8,7 @@ OAUTH_TOKEN = config("OAUTH_TOKEN")
 BOARD_NAME = config("BOARD_NAME")
 LIST_NAME = config("LIST_NAME")
 
+AUTH = "?key=" + API_KEY + "&token=" + OAUTH_TOKEN + "&response_type=token"
 
 def args():
     try:
@@ -17,8 +18,7 @@ def args():
 
 def findBoard():
    
-    get_boards_url = "https://api.trello.com/1/members/me/boards?key=" + \
-                    API_KEY + "&token=" + OAUTH_TOKEN + "&response_type=token"
+    get_boards_url = "https://api.trello.com/1/members/me/boards" + AUTH
 
     r = requests.get(get_boards_url)
     for boards in r.json():
@@ -41,8 +41,7 @@ def findBoard():
 def findList(board_id):
    
     get_lists_url = "https://api.trello.com/1/boards/" + board_id + \
-                  "/lists?key=" + API_KEY + "&token=" + OAUTH_TOKEN + \
-                  "&response_type=token"
+                    "/lists" + AUTH
  
     r = requests.get(get_lists_url)
     for lists in r.json():
@@ -62,8 +61,7 @@ def findList(board_id):
 
 def findUsLabel(board_id):
     get_lists_url = "https://api.trello.com/1/boards/" + board_id + \
-                  "/labels?key=" + API_KEY + "&token=" + OAUTH_TOKEN + \
-                  "&response_type=token"
+                    "/labels" + AUTH
 
     r = requests.get(get_lists_url)
     for label in r.json():
@@ -73,14 +71,13 @@ def findUsLabel(board_id):
                 label_id = value
             if key == "name":
                 if value == "US":
-                    #print(label_id)
+                    print("Found label.")
                     return label_id
 
 def findCards(list_id):
    
     get_cards_url = "https://api.trello.com/1/lists/" + list_id + \
-                    "/cards?key=" + API_KEY + "&token=" + OAUTH_TOKEN + \
-                    "&response_type=token"
+                    "/cards" + AUTH
 
     list_of_cards = []
 
@@ -110,13 +107,26 @@ def findCards(list_id):
 def addCards(list_id,list_of_cards,labelId,new_cards):
     for new_card in new_cards:
         if not any(card[1] == new_card["title"] for card in list_of_cards):
-            r = requests.post("https://api.trello.com/1/cards?key=" + \
-                            API_KEY + "&token=" + OAUTH_TOKEN + \
+            r = requests.post("https://api.trello.com/1/cards" + AUTH + \
                             "&name=" + new_card["title"] + \
                             "&idList=" + list_id + \
                             "&desc=" + new_card["description"] + \
                             "&idLabels=" + labelId)
-    
+            
+            cardId = r.json()["id"]
+
+            for CL in new_card["checklists"]:
+                r2 = requests.post("https://api.trello.com/1/cards/" + cardId + \
+                                "/checklists" + AUTH + \
+                                "&name=" + CL["title"])
+
+                checklistId = r2.json()["id"]
+
+                for CL_item in CL["items"]:
+                    r3 = requests.post("https://api.trello.com/1/checklists/" + checklistId + \
+                                    "/checkItems" + AUTH + \
+                                    "&name=" + CL_item)
+            
             print("Added card : " + new_card["title"])
 
 
@@ -129,9 +139,32 @@ def readFile(file_path):
         file.close()
     
     us_list = content.split("---")[0:-1]
-    
+
     for us in us_list:
         try:
+        
+            checkLists = []
+
+            checkL_start = us.find("<!-- SCHECK ",0)
+            while checkL_start != -1:
+                checkL_end = us.find("<!-- ECHECK ",checkL_start)
+                checkL_info = us[checkL_start:checkL_end].splitlines()
+                items = []
+                for i in checkL_info[1:]:
+                    items.append(i.strip(" - "))
+
+                checkList = {
+                    "title": checkL_info[0].replace("<!-- SCHECK : ","").replace(" -->",""),
+                    "items": items[:-1]
+                }
+                checkLists.append(checkList)
+
+                l_start = us[checkL_start:us.find("\n",checkL_start)]                
+                l_end = us[checkL_end:us.find("\n",checkL_end)]
+                us = us.replace(l_start,"")
+                us = us.replace(l_end,"")
+                checkL_start = us.find("<!-- SCHECK ",checkL_end + 10)
+            
             us = us.replace("<u>","")
             us = us.replace("</u>","")
             p1_start = us.find("### ",0)
@@ -158,11 +191,13 @@ def readFile(file_path):
             
             #print(us_title)
             #print(us_description)
-
+            
             card = {
                 "title": us_title,
-                "description": us_description
+                "description": us_description,
+                "checklists": checkLists
             }
+            
             list_of_new_cards.append(card)
         except:
             pass

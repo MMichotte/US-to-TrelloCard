@@ -4,7 +4,9 @@
 
 #### <u>📌 Préconditions :</u>
 - **Technique :**
+  <!-- SCHECK : Préconditions technique -->
   - /
+  <!-- ECHECK -->
 - **Logique :**
   - /
 
@@ -21,8 +23,8 @@ fake list :
 - /
 
 #### <u>🔍 Critères de validation :</u>
-  
+  <!-- SCHECK : Critères de validation -->
   - /
   - /
-
+  <!-- ECHECK -->
 ---
