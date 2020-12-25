@@ -17,9 +17,15 @@ Python script that enables me to convert à User-Story (with a defined structure
 4. Create `.env` file based on the `.envTemplate`
 5. Run script :
     ```bash
-    python3 src/addTrelloCard.py example/example.md
+    python3 src/addTrelloCards.py example/example.md
     ```
 
-❗️ The file structure of your .md file must be similar as the first User-Story of the example.md file! 
+❗️ The file structure of your .md file must be similar as the first User-Story of the example.md file : 
+
+- The user-story **must** be contained between the `<!--us-->` abd `<!--/us-->`tags
+- The description of the user-story **must** be contained between the `<!--description-->` and `<!--/description-->` tags.
+- You can add one or more checklists by containing the items in between the  `<!--checklist: "your checklist name-->` and  `<!--checklist-->` tags. Replace `"your checklist nam"` by the name you want to give your checklisr.
+  
+❗️ The US won't be added if it doesn't have a title and a description.
 
 ❗️ Your Trello list **must** have a label named `US`.

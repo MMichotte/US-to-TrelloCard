@@ -1,14 +1,18 @@
 ## Générale (G)
 
-### (G01) Connexion utilisateur
+<!--us-->
+<!--title-->
+### (G01) Connexion utilisateur 2
+<!--/title-->
+<!--description-->
 > En tant que personne non-connectée j'aimerais pouvoir me connecter afin d'avoir accès au fonctionnalités de la web-app. 
 
 #### <u>📌 Préconditions :</u>
 - **Technique :**
-  <!-- SCHECK : Préconditions technique -->
+  <!--checklist: "📌 Préconditions technique"-->
   - table `User` doit exister
   - Test
-  <!-- ECHECK -->
+  <!--/checklist-->
 - **Logique :**
   - l'utilisateur doit exister (avoir été créé au préalable)
 
@@ -41,14 +45,23 @@ body    :
 - un message d'erreur est affiché en dessous du champ *Password* indiquant l'erreur de connexion.
 
 #### <u>🔍 Critères de validation :</u>
-  <!-- SCHECK : Critères de validation -->
+  <!--checklist: "🔍 Critères de validation"-->
   - Une personne ayant entré un mauvais *Username* et/ou mauvais *Password* ne sait pas se connecter
   - Une personne ayant entré un *Username* et un *Password* correcte est connecté et est redirigé vers son dashboard. 
-  <!-- ECHECK -->
-  
+  <!--/checklist-->
+
+<!--/description-->
+<!--/us-->
+
 ---
 
+<!--us-->
+<!--title-->
 ### (G02) Ajout/Création utilisateur en tant qu'admin
+<!--/title-->
+<!--description-->
 > En tant qu'utilisateur Admin j'aimerais pouvoir créer/ajouter un compte utilisateur de n'importe quel type (A,D,M,C) afin de accorder l'accès à l'application et de donner des droits à certaines personnes.
+<!--/description-->
+<!--/us-->
 
 ---

@@ -1,3 +1,4 @@
+from parseFile import *
 import sys
 import requests
 from decouple import config
@@ -130,80 +131,6 @@ def addCards(list_id,list_of_cards,labelId,new_cards):
             print("Added card : " + new_card["title"])
 
 
-def readFile(file_path):
-    f = file_path
-    list_of_new_cards = []
-    
-    with open(f,'r') as file:
-        content = file.read()
-        file.close()
-    
-    us_list = content.split("---")[0:-1]
-
-    for us in us_list:
-        try:
-        
-            checkLists = []
-
-            checkL_start = us.find("<!-- SCHECK ",0)
-            while checkL_start != -1:
-                checkL_end = us.find("<!-- ECHECK ",checkL_start)
-                checkL_info = us[checkL_start:checkL_end].splitlines()
-                items = []
-                for i in checkL_info[1:]:
-                    items.append(i.strip(" - "))
-
-                checkList = {
-                    "title": checkL_info[0].replace("<!-- SCHECK : ","").replace(" -->",""),
-                    "items": items[:-1]
-                }
-                checkLists.append(checkList)
-
-                l_start = us[checkL_start:us.find("\n",checkL_start)]                
-                l_end = us[checkL_end:us.find("\n",checkL_end)]
-                us = us.replace(l_start,"")
-                us = us.replace(l_end,"")
-                checkL_start = us.find("<!-- SCHECK ",checkL_end + 10)
-            
-            us = us.replace("<u>","")
-            us = us.replace("</u>","")
-            p1_start = us.find("### ",0)
-            p2_start = us.find("#### ",0)
-            p3_start = us.find("#### ",p2_start + 10)
-            p4_start = us.find("#### ",p3_start + 10)
-
-            if p1_start ==-1 or p1_start ==-1 or p3_start ==-1 or p4_start ==-1: 
-                raise NameError('invalid US') 
-
-            p1_block = us[p1_start:p2_start].splitlines()
-            p2_block = us[p2_start:p3_start].strip()
-            p3_block = us[p3_start:p4_start].strip()
-            p4_block = us[p4_start:].strip()
-
-            us_title =  p1_block[0].lstrip("### ")
-            us_explanation = p1_block[1] + "\n\n --- \n\n"
-            
-            us_preconditions = p2_block.replace("#### ","").replace("\n","\n----\n",1) + "\n\n --- \n\n"
-            us_detail = p3_block.replace("#### ","").replace("\n","\n----\n",1) + "\n\n --- \n\n"
-            us_validation = p4_block.replace("#### ","").replace("\n","\n----\n",1) 
-
-            us_description = us_explanation + us_preconditions + us_detail + us_validation
-            
-            #print(us_title)
-            #print(us_description)
-            
-            card = {
-                "title": us_title,
-                "description": us_description,
-                "checklists": checkLists
-            }
-            
-            list_of_new_cards.append(card)
-        except Exception as e:
-            print(e)
-    
-    return list_of_new_cards
-
 if __name__ == '__main__': 
     file_path = args()
     board_id = findBoard()
@@ -213,6 +140,6 @@ if __name__ == '__main__':
         if list_id and USLabel_id:
             list_of_cards = findCards(list_id)
             if list_of_cards:
-                new_cards = readFile(file_path)
+                new_cards = parseFile(file_path)
                 if new_cards:
                     addCards(list_id,list_of_cards,USLabel_id,new_cards)
