@@ -1,7 +1,7 @@
 # US-to-TrelloCard
 Python script that enables me to convert à User-Story (with a defined structure) to a Trello card
 
-## How to Use 
+## Instructions
 > instructions for OSX systems
 
 1. Download repository 
