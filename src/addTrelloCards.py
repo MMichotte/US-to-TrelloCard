@@ -89,16 +89,16 @@ def findCards(list_id):
         card_due = ""
         card_desc = ""
 
-    for key, value in cards.items():
-        if key == "id":
-            card_id = value
-        elif key == "name":
-            card_name = value
-        elif key == "due":
-            card_due = value
-        elif key == "desc":
-            card_desc = value
-        list_of_cards.append([card_id, card_name, card_due, card_desc])
+        for key, value in cards.items():
+            if key == "id":
+                card_id = value
+            elif key == "name":
+                card_name = value
+            elif key == "due":
+                card_due = value
+            elif key == "desc":
+                card_desc = value
+            list_of_cards.append([card_id, card_name, card_due, card_desc])
 
     if len(list_of_cards) > 0:
         return list_of_cards
