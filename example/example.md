@@ -1,63 +1,52 @@
-## Générale (G)
+## Example User Stories
 
 <!--us-->
 <!--title-->
-### (G01) Connexion utilisateur 2
+### (US01) Example US n°1
 <!--/title-->
 <!--description-->
-> En tant que personne non-connectée j'aimerais pouvoir me connecter afin d'avoir accès au fonctionnalités de la web-app. 
+> As an administrator I would like to delete a user-account to be able to remove a user that has been fired.  
 
-#### <u>📌 Préconditions :</u>
-- **Technique :**
-  <!--checklist: "📌 Préconditions technique"-->
-  - table `User` doit exister
-  - Test
+#### <u>📌 Preconditions :</u>
+- **Technical:**
+  <!--checklist: "📌 Technical preconditions"-->
+  - A `User`table must exist in the DB
   <!--/checklist-->
-- **Logique :**
-  - l'utilisateur doit exister (avoir été créé au préalable)
+- **Logical :**
+  - The administrator is drinking coffee 
+  - It is raining outside 
 
-#### <u>📋 Détail :</u>
-Quand la personne navigue vers l'URL du site-web, il arrive sur une page de login contenant un formulaire avec les champs suivant :
+#### <u>📋 Detail :</u>
 
-- Username: `texte` 
-- Password: `texte` 
-- Login : `bouton`
+<!--img-->
+![angry boss](img/angryBoss.jpg)
+<!--/img-->
 
-Lorsqu'il clique sur le bouton *Login* une requête `POST` est envoyé à l'API afin de tenter d'authentifier l'utilisateur :
+When the adminstrator clicks on the `delete user` button next to the user's avatar, an API request is sent to delete the selected user:
 
-```json
-method  : POST
-url     : /api/login
-body    :
-{
-    "Username": "aaaaaaa",
-    "Password": "*******"
-}
+```js
+method  : DELETE
+url     : /api/user/:userId 
 ```
 
-<!--img-->
-![my 2](img/test.png)
-<!--/img-->
+While waiting for a response from the server, the app should :
 
-✅ Si l'utilisateur existe et que le mot de passe est correcte, un token JWT doit être renvoyé et l'utilisateur est re-dirigé vers sont dashboard. 
+- Open a random Youtube vidéo
+- Send a postcard to the president of the United States of America
 
-❌ Si la requête échoue: 
+✅ If the request is a success, the administrator is redirected to the website's home-page.
 
-- les deux champs texte tremble brièvement
-- la bordure des champs texte est rouge
-- le champ *Password* est vidé
-- un message d'erreur est affiché en dessous du champ *Password* indiquant l'erreur de connexion.
+❌ If the request failed, the administrator is redirected to a 10h long `relaxing nature sound` video on Youtube.
 
 <!--img-->
-![my image](img/Table_nav.png)
+![troll](img/troll.gif)
 <!--/img-->
 
-#### <u>🔍 Critères de validation :</u>
-  <!--checklist: "🔍 Critères de validation"-->
-  - Une personne ayant entré un mauvais *Username* et/ou mauvais *Password* ne sait pas se connecter
-  - Une personne ayant entré un *Username* et un *Password* correcte est connecté et est redirigé vers son dashboard. 
-  <!--/checklist-->
-
+#### <u>🔍 Validation criteria :</u>
+<!--checklist: "🔍 Validation criteria"-->
+- The administrator should be relaxed
+- The user should be deleted from this planet
+<!--/checklist-->
 <!--/description-->
 <!--/us-->
 
@@ -65,10 +54,10 @@ body    :
 
 <!--us-->
 <!--title-->
-### (G02) Ajout/Création utilisateur en tant qu'admin
+### (US02) Another Example 
 <!--/title-->
 <!--description-->
-> En tant qu'utilisateur Admin j'aimerais pouvoir créer/ajouter un compte utilisateur de n'importe quel type (A,D,M,C) afin de accorder l'accès à l'application et de donner des droits à certaines personnes.
+> As a student I would like to pass my exams to be able to get a job.
 <!--/description-->
 <!--/us-->
 

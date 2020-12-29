@@ -1,32 +1,32 @@
 <!--us-->
 <!--title-->
-### (AA00) Nom de la US
+### (AA00) Name of the US
 <!--/title-->
 <!--description-->
-> En tant que .... j'aimerais ... afin de .... 
+> As .... I would like to ... to be able to .... 
 
-#### <u>📌 Préconditions :</u>
-- **Technique :**
-  <!--checklist: "📌 Préconditions technique"-->
+#### <u>📌 Preconditions :</u>
+- **Technical :**
+  <!--checklist: "📌 Technical préconditions"-->
   - /
   <!--/checklist-->
-- **Logique :**
+- **Logical :**
   - /
 
-#### <u>📋 Détail :</u>
+#### <u>📋 Detail :</u>
 /
 
 ```js
 console.log("some code block")
 ```
 
-simple bullet list : 
+Simple bullet list : 
 
 - /
 - /
 
-#### <u>🔍 Critères de validation :</u>
-  <!--checklist: "🔍 Critères de validation"-->
+#### <u>🔍 Validation criteria :</u>
+  <!--checklist: "🔍 Validation criteria"-->
   - /
   - /
   <!--/checklist-->
