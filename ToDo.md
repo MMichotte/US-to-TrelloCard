@@ -1,13 +1,28 @@
+# To Do 
 
-- [x] Isoler chaque US du document
-- [x] extraire le tire
-- [x] extraire le reste comme étant la description :
-  - [x]retirer les tags html
-  - [x]formatter les blocs de code
-  - [x]ajouter des séparateur '---' entre chaque section
+## General
+- [X] Parse given file 
+  - [X] Extract all US's from file
+    - [X] Extract Title
+    - [X] Description
+    - [X] Checklists
+    - [X] Images
+    - [X] Remove all tags
 
-- [x] ajouter label US 
-- [x] création auto des checklist un checklist 
-- [X] Ajout d'image dans la description
 
-- [X] Vérifier dans toutes les listes du tableau si la us a déjà été créée! 
+- [X] Add Cards 
+  - [X] Retrieve API credentials
+  - [X] Retrieve `board`
+  - [X] Retrieve `lists`
+  - [X] Retrieve `labels`
+  - [X] Create card 
+    - [X] w/ title
+    - [X] w/ description
+      - [X] w/ integrated images
+    - [X] w/ checklists
+    - [X] w/ label
+  
+
+## Optimisation
+- [ ] add labels based on .env specs
+- [ ] refactor output for better debugging and information 
