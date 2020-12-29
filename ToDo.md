@@ -24,5 +24,5 @@
   
 
 ## Optimisation
-- [ ] add labels based on .env specs
+- [X] add labels based on .env specs
 - [ ] refactor output for better debugging and information 
