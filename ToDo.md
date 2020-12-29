@@ -9,3 +9,5 @@
 - [x] ajouter label US 
 - [x] création auto des checklist un checklist 
 - [X] Ajout d'image dans la description
+
+- [ ] Vérifier dans toutes les listes du tableau si la us a déjà été créée! 

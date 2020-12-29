@@ -24,7 +24,7 @@ Python script that enables me to convert à User-Story (with a defined structure
 
 - The user-story **must** be contained between the `<!--us-->` abd `<!--/us-->`tags
 - The description of the user-story **must** be contained between the `<!--description-->` and `<!--/description-->` tags.
-- You can add one or more checklists by containing the items in between the  `<!--checklist: "your checklist name-->` and `<!--checklist-->` tags. Replace `"your checklist nam"` by the name you want to give your checklisr.
+- You can add one or more checklists by containing the items in between the  `<!--checklist: "your checklist name-->` and `<!--checklist-->` tags. Replace `"your checklist name"` by the name you want to give your checklist.
 - You can add on or more images by enclosing the markdown image syntax (`![desc](path)`) in between the `<!--img-->` and `<!--/img-->` tags. 
   
 ❗️ The US won't be added if it doesn't have a title and a description.
