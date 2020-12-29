@@ -40,7 +40,7 @@ The tags are nothing more than html comments and are therefor not visible when d
     ```
 
 ## 🔍 Examples :
-//TODO
+![live example](example/img/live_example.gif)
 
 ## 🖌 Snippets : 
 

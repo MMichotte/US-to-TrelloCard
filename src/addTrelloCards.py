@@ -36,11 +36,11 @@ def findBoard():
                 board_name = value
 
         if board_name == BOARD_NAME:
-            print("Found board.")
+            print("\t✅ Found board: \033[34m" + BOARD_NAME + "\033[0m")
             return board_id
     
-    print("Didn't find board.")
-    return False
+    print("\t❌ Board not found ! --> \033[31m" + BOARD_NAME + "\033[0m\n")
+    exit()
 
 def findList(board_id):
 
@@ -65,11 +65,11 @@ def findList(board_id):
 
     for li in allLists: 
         if li['listName'] == LIST_NAME:
-            print("Found list.")
+            print("\t✅ Found List: \033[34m" + LIST_NAME + "\033[0m")
             return [li['listId'], allLists]
     
-    print("Didn't find list.")
-    return False
+    print("\t❌ List not found ! --> \033[31m" + LIST_NAME + "\033[0m\n")
+    exit()
 
 def findUsLabel(board_id):
 
@@ -84,8 +84,11 @@ def findUsLabel(board_id):
                 label_id = value
             if key == "name":
                 if value == LABELS[0]:
-                    print("Found label.")
+                    print("\t✅ Found Label: \033[34m" + LABELS[0] + "\033[0m")
                     return label_id
+    
+    print("\t❌ Label not found ! --> \033[31m" + LABELS[0] + "\033[0m\n")
+    exit()
 
 def findCards(all_lists):
    
@@ -119,7 +122,8 @@ def findCards(all_lists):
     if len(list_of_cards) > 0:
         return list_of_cards
     else:
-        return False
+        print("\t❌ No cards found ! --> \033[31mThere must be at least ONE card in any list of your board\033[0m\n")
+        exit()
 
 def addImage(cardId,file_path,filePath,desc):
     
@@ -147,6 +151,7 @@ def addImage(cardId,file_path,filePath,desc):
 
 
 def addCards(list_id,list_of_cards,labelId,file_path,new_cards):
+    cardsAdded = 0
     for new_card in new_cards:
         if not any(card[1] == new_card["title"] for card in list_of_cards):
             url = "https://api.trello.com/1/cards"
@@ -186,20 +191,24 @@ def addCards(list_id,list_of_cards,labelId,file_path,new_cards):
             for img in new_card["images"]:
                 new_card["description"] = addImage(cardId,file_path,img["path"],new_card["description"])
 
-            print("Added card : " + new_card["title"])
+            cardsAdded += 1
 
+            print("\t🎯 Added card : \033[32m" + new_card["title"] + "\033[0m")
+
+    if cardsAdded == 0:
+        print("\t💡\033[33mNo cards were added.\033[0m")
+    elif  cardsAdded != len(new_cards):
+        print("\n\t💡\033[33mSome cards were not added since they already existed.\033[0m")
 
 if __name__ == '__main__': 
+    print("\n🚀 \033[32mRunning script \033[0m")
     file_path = args()
     board_id = findBoard()
-    if board_id:
-        get_lists = findList(board_id)
-        list_id = get_lists[0]
-        all_lists = get_lists[1]
-        USLabel_id = findUsLabel(board_id)
-        if list_id and USLabel_id:
-            list_of_cards = findCards(all_lists)
-            if list_of_cards:
-                new_cards = parseFile(file_path)
-                if new_cards:
-                    addCards(list_id,list_of_cards,USLabel_id,file_path,new_cards)
+    get_lists = findList(board_id)
+    list_id = get_lists[0]
+    all_lists = get_lists[1]
+    USLabel_id = findUsLabel(board_id)
+    list_of_cards = findCards(all_lists)
+    new_cards = parseFile(file_path)
+    addCards(list_id,list_of_cards,USLabel_id,file_path,new_cards)
+    print("🎉 \033[32mDone! \033[0m\n")

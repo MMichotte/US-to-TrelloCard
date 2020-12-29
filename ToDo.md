@@ -25,4 +25,4 @@
 
 ## Optimisation
 - [X] add labels based on .env specs
-- [ ] refactor output for better debugging and information 
+- [X] refactor output for better debugging and information 

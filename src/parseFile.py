@@ -13,10 +13,15 @@ def parseFile(file_path):
     userStories = []
     newCards = []
     
-    with open(f,'r') as file:
-        content = file.read()
-        file.close()
-    
+    try:
+        with open(f,'r') as file:
+            content = file.read()
+            file.close()
+        print("\t✅ Found file: \033[34m" + file_path + "\033[0m\n")
+    except:
+        print("\t❌ File not found ! --> \033[31m" + file_path + "\033[0m\n")
+        exit()
+
     # extract all User-Stories 
     us_start = content.find("\n",content.find("<!--us-->",0))
     us_stop = content.find("<!--/us-->",us_start)
@@ -104,4 +109,4 @@ def parseFile(file_path):
 
 
 if __name__ == '__main__': 
-    print(parseFile("../example/example.md"))
+    parseFile("../example/example.md")
