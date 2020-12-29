@@ -7,7 +7,6 @@ The tags are nothing more than html comments and are therefor not visible when d
 
 ----
 ## 🏷 Available tags :
-
 | Opening tag | Closing tag | Description | Required |
 |:-----------:|:-------------:|:-----------:|:--------:|
 | `<!--us-->` | `<!--/us-->`    | Delimits a User Story | ✅
@@ -43,12 +42,10 @@ The tags are nothing more than html comments and are therefor not visible when d
 ![live example](example/img/live_example.gif)
 
 ## 🖌 Snippets : 
-
 To improve your productivity, you can generate a template for your user-story by using the provided code-snippets. 
-
 Feel free to modify the code snippets to your needs but be sure to keep using the correct tags! 
 
 > To start using the snippets, simply copy/paste the content of the `.vscode`folder of this repository into yours. 
 
 ## 🎯 GitHub Actions :
-//TODO
+For even more automation, you can use this script in a `Github Actions` workflow. Give a look at [this file](https://github.com/MMichotte/SLG_APP/blob/master/.github/workflows/Trello.yml) for a real-life example. 
