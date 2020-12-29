@@ -30,3 +30,5 @@ Python script that enables me to convert à User-Story (with a defined structure
 ❗️ The US won't be added if it doesn't have a title and a description.
 
 ❗️ Your Trello list **must** have a label named `US`.
+
+🔍 You'll find a code-snippets script in the .vscode folder of this projet. Use it to easily generate a user-story structure in your .md file! 
