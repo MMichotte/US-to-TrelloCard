@@ -2,7 +2,15 @@
 	"US-basic-template": {
 	 	"prefix": "us-basic",
 	 	"body": [
-			 "\n<!--us-->\n<!--title-->\n### (AA00) Nome de la US\n<!--/title-->\n<!--description-->\n> En tant que .... j'aimerais ... afin de .... \n<!--/description-->\n<!--/us-->\n\n---\n"
+			 "<!--us-->",
+			 "<!--title-->",
+			 "### (AA00) Name of the US",
+			 "<!--/title-->",
+			 "<!--description-->",
+			 "> As .... I would like to ... to be able to .... ",
+			 "<!--/description-->",
+			 "<!--/us-->",
+			 "\n---\n"
 	 	],
 	 	"description": "Generate very basic User-Story structure"
 	},
@@ -10,9 +18,40 @@
 	"US-complete-template": {
 	 	"prefix": "us-full",
 	 	"body": [ 
-			"\n<!--us-->\n<!--title-->\n### (AA00) Nom de la US\n<!--/title-->\n<!--description-->\n> En tant que .... j'aimerais ... afin de .... \n\n#### <u>📌 Préconditions :</u>\n- **Technique :**\n\t<!--checklist: \"📌 Préconditions technique\"-->\n\t- /\n\t<!--/checklist-->\n- **Logique :**\n- /\n\n#### <u>📋 Détail :</u>\n/\n\n```js\nconsole.log(\"some code block\")\n```\n\nsimple bullet list : \n\n- /\n- /\n\n<!--img-->\n![my image](path/to/imahe.png)\n<!--/img-->\n\n#### <u>🔍 Critères de validation :</u>\n<!--checklist: \"🔍 Critères de validation\"-->\n- /\n- /\n<!--/checklist-->\n\n<!--/description-->\n<!--/us-->\n\n---\n"
+			"<!--us-->",
+			"<!--title-->",
+			"### (AA00) Name of the US",
+			"<!--/title-->",
+			"<!--description-->",
+			"> As .... I would like to ... to be able to .... ",
+			"\n#### <u>📌 Preconditions :</u>",
+			"- **Technical:**",
+			"\t<!--checklist: \"📌 Technical preconditions\"-->",
+			"\t- /",
+			"\t<!--/checklist-->",
+			"- **Logical :**",
+			"\t- /",
+			"\n#### <u>📋 Detail :</u>",
+			"/",
+			"\n```js",
+			"console.log(\"some code block\")",
+			"```",
+			"\nSimple bullet list : ",
+			"- /",
+			"- /",
+			"\n<!--img-->",
+			"![my image](path/to/imahe.png)",
+			"<!--/img-->",
+			"\n#### <u>🔍 Validation criteria :</u>",
+			"<!--checklist: \"🔍 Validation criteria\"-->",
+			"- /",
+			"- /",
+			"<!--/checklist-->",
+			"<!--/description-->",
+			"<!--/us-->",
+			"\n---\n"
 	 	],
 	 	"description": "Generate complete User-Story structure"
-	}
+	},
 }
 
