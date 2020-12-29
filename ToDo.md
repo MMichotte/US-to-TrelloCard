@@ -11,3 +11,5 @@
 - [X] Ajout d'image dans la description
 
 - [X] Vérifier dans toutes les listes du tableau si la us a déjà été créée! 
+
+- [ ] Ré-écrire toute la doc et les examples en EN
