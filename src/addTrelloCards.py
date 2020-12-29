@@ -25,6 +25,10 @@ def findBoard():
     params = {'key': API_KEY, 'token': OAUTH_TOKEN}
 
     r = requests.get(url,params=params)
+    if r.status_code == 401:
+        print("\n\t❌ \033[41mWrong credentials !\033[0m\n")
+        quit()
+
     for boards in r.json():
         board_id = ""
         board_name = ""
