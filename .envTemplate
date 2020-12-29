@@ -4,3 +4,7 @@ OAUTH_TOKEN = "8b51022e40ccfb446afaac0cece259d5e50804257fc14955ad540ded326fa262"
 
 BOARD_NAME = "my_Board"
 LIST_NAME = "my_List"
+
+# separate labes by ', ' 
+# CURRENTLY ONLY THE FIRST LABEL IS ADDED!
+LABELS = "[US]" 

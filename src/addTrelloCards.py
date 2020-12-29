@@ -9,6 +9,8 @@ OAUTH_TOKEN = config("OAUTH_TOKEN")
 BOARD_NAME = config("BOARD_NAME")
 LIST_NAME = config("LIST_NAME")
 
+LABELS = config("LABELS").lstrip("[").rstrip("]").split(', ')
+
 AUTH = "?key=" + API_KEY + "&token=" + OAUTH_TOKEN + "&response_type=token"
 
 def args():
@@ -81,7 +83,7 @@ def findUsLabel(board_id):
             if key == "id":
                 label_id = value
             if key == "name":
-                if value == "US":
+                if value == LABELS[0]:
                     print("Found label.")
                     return label_id
 
