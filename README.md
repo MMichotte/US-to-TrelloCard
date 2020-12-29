@@ -6,7 +6,7 @@ This project gives you the ability to automate this process just by adding a few
 The tags are nothing more than html comments and are therefor not visible when displayed on github. 
 
 ----
-## 🏷 Available tags:
+## 🏷 Available tags :
 
 | Opening tag | Closing tag | Description | Required |
 |:-----------:|:-------------:|:-----------:|:--------:|
@@ -49,3 +49,6 @@ To improve your productivity, you can generate a template for your user-story by
 Feel free to modify the code snippets to your needs but be sure to keep using the correct tags! 
 
 > To start using the snippets, simply copy/paste the content of the `.vscode`folder of this repository into yours. 
+
+## 🎯 GitHub Actions :
+//TODO
