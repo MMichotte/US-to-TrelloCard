@@ -53,6 +53,25 @@ def parseFile(file_path):
             cl_start = us.find("<!--checklist: ",cl_stop)
             cl_stop = us.find("<!--/checklist-->",cl_start)
         
+        #get the images
+        images = []
+        img_start = us.find("<!--img-->",0)
+        img_stop = us.find("<!--/img-->",img_start)
+        while img_start != -1:
+            imgTitle = us[us.find("[",img_start):us.find("]",img_start)].lstrip("[")
+            imgPath = us[us.find("(",img_start):us.find(")",img_start)].lstrip("(")
+            images.append(
+                {
+                    "title": imgTitle,
+                    "path": imgPath
+                }
+            )
+            img_start = us.find("<!--img-->",img_stop)
+            img_stop = us.find("<!--/img-->",img_start)
+        
+        us = us.replace("<!--img-->","")
+        us = us.replace("<!--/img-->","")
+        
         #get the description
         desc_start =  us.find("\n",us.find("<!--description-->"))+1
         desc_stop = us.find("<!--/description-->",desc_start)
@@ -74,7 +93,8 @@ def parseFile(file_path):
                 {
                     "title": cardTitle,
                     "description": description,
-                    "checklists": checklists
+                    "checklists": checklists,
+                    "images": images
                 }
             )
 
@@ -84,4 +104,4 @@ def parseFile(file_path):
 
 
 if __name__ == '__main__': 
-    parseFile("../example/example.md")
+    print(parseFile("../example/example.md"))

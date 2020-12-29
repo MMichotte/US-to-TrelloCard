@@ -35,6 +35,10 @@ body    :
 }
 ```
 
+<!--img-->
+![my 2](img/test.png)
+<!--/img-->
+
 ✅ Si l'utilisateur existe et que le mot de passe est correcte, un token JWT doit être renvoyé et l'utilisateur est re-dirigé vers sont dashboard. 
 
 ❌ Si la requête échoue: 
@@ -43,6 +47,10 @@ body    :
 - la bordure des champs texte est rouge
 - le champ *Password* est vidé
 - un message d'erreur est affiché en dessous du champ *Password* indiquant l'erreur de connexion.
+
+<!--img-->
+![my image](img/Table_nav.png)
+<!--/img-->
 
 #### <u>🔍 Critères de validation :</u>
   <!--checklist: "🔍 Critères de validation"-->

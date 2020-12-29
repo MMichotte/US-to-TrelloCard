@@ -19,9 +19,10 @@ def args():
 
 def findBoard():
    
-    get_boards_url = "https://api.trello.com/1/members/me/boards" + AUTH
+    url = "https://api.trello.com/1/members/me/boards"
+    params = {'key': API_KEY, 'token': OAUTH_TOKEN}
 
-    r = requests.get(get_boards_url)
+    r = requests.get(url,params=params)
     for boards in r.json():
         board_id = ""
         board_name = ""
@@ -40,11 +41,11 @@ def findBoard():
     return False
 
 def findList(board_id):
-   
-    get_lists_url = "https://api.trello.com/1/boards/" + board_id + \
-                    "/lists" + AUTH
+
+    url = "https://api.trello.com/1/boards/" + board_id + "/lists"
+    params = {'key': API_KEY, 'token': OAUTH_TOKEN}
  
-    r = requests.get(get_lists_url)
+    r = requests.get(url,params=params)
     for lists in r.json():
         list_id = ""
         list_name = ""
@@ -61,10 +62,11 @@ def findList(board_id):
     return False
 
 def findUsLabel(board_id):
-    get_lists_url = "https://api.trello.com/1/boards/" + board_id + \
-                    "/labels" + AUTH
 
-    r = requests.get(get_lists_url)
+    url = "https://api.trello.com/1/boards/" + board_id + "/labels"
+    params = {'key': API_KEY, 'token': OAUTH_TOKEN}
+
+    r = requests.get(url,params=params)
     for label in r.json():
         label_id = ""
         for key, value in label.items():
@@ -77,12 +79,12 @@ def findUsLabel(board_id):
 
 def findCards(list_id):
    
-    get_cards_url = "https://api.trello.com/1/lists/" + list_id + \
-                    "/cards" + AUTH
+    url = "https://api.trello.com/1/lists/" + list_id + "/cards"
+    params = {'key': API_KEY, 'token': OAUTH_TOKEN}
 
     list_of_cards = []
 
-    r = requests.get(get_cards_url)
+    r = requests.get(url,params=params)
     for cards in r.json():
         card_id = ""
         card_name = ""
@@ -105,29 +107,71 @@ def findCards(list_id):
     else:
         return False
 
-def addCards(list_id,list_of_cards,labelId,new_cards):
+def addImage(cardId,file_path,filePath,desc):
+    
+    absFilePath = file_path[0:file_path.rfind("/")] + "/" + filePath
+
+    url = "https://api.trello.com/1/cards/" + cardId + "/attachments"
+    params = {'key': API_KEY, 'token': OAUTH_TOKEN}
+    files = {'file': open(absFilePath, 'rb')}
+
+    r = requests.post(url, params=params, files=files)
+
+    imgUrl = r.json()["previews"][-1]["url"]
+    new_desc = desc.replace(filePath,imgUrl)
+
+    url = "https://api.trello.com/1/cards/" + cardId
+    params = {
+        'key': API_KEY,
+        'token': OAUTH_TOKEN,
+        'desc': new_desc
+        }
+
+    r = requests.put(url,params=params)
+
+    return new_desc
+
+
+def addCards(list_id,list_of_cards,labelId,file_path,new_cards):
     for new_card in new_cards:
         if not any(card[1] == new_card["title"] for card in list_of_cards):
-            r = requests.post("https://api.trello.com/1/cards" + AUTH + \
-                            "&name=" + new_card["title"] + \
-                            "&idList=" + list_id + \
-                            "&desc=" + new_card["description"] + \
-                            "&idLabels=" + labelId)
+            url = "https://api.trello.com/1/cards"
+            params = {
+                'key': API_KEY,
+                'token': OAUTH_TOKEN,
+                'name': new_card["title"],
+                'idList': list_id,
+                'desc': new_card["description"],
+                'idLabels': labelId
+                }
+
+            r = requests.post(url,params=params)
             
             cardId = r.json()["id"]
 
             for CL in new_card["checklists"]:
-                r2 = requests.post("https://api.trello.com/1/cards/" + cardId + \
-                                "/checklists" + AUTH + \
-                                "&name=" + CL["title"])
+                url = "https://api.trello.com/1/cards/" + cardId + "/checklists"
+                params = {
+                    'key': API_KEY,
+                    'token': OAUTH_TOKEN,
+                    'name': CL["title"]
+                    }
+                r2 = requests.post(url,params=params)
 
                 checklistId = r2.json()["id"]
 
                 for CL_item in CL["items"]:
-                    r3 = requests.post("https://api.trello.com/1/checklists/" + checklistId + \
-                                    "/checkItems" + AUTH + \
-                                    "&name=" + CL_item)
+                    url = "https://api.trello.com/1/checklists/" + checklistId + "/checkItems"
+                    params = {
+                        'key': API_KEY,
+                        'token': OAUTH_TOKEN,
+                        'name': CL_item
+                        }
+                    r3 = requests.post(url,params=params)
             
+            for img in new_card["images"]:
+                new_card["description"] = addImage(cardId,file_path,img["path"],new_card["description"])
+
             print("Added card : " + new_card["title"])
 
 
@@ -142,4 +186,4 @@ if __name__ == '__main__':
             if list_of_cards:
                 new_cards = parseFile(file_path)
                 if new_cards:
-                    addCards(list_id,list_of_cards,USLabel_id,new_cards)
+                    addCards(list_id,list_of_cards,USLabel_id,file_path,new_cards)

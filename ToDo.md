@@ -8,4 +8,4 @@
 
 - [x] ajouter label US 
 - [x] création auto des checklist un checklist 
-- [ ] Ajout d'image
+- [X] Ajout d'image dans la description
