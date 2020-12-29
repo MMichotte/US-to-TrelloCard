@@ -45,6 +45,8 @@ def findList(board_id):
     url = "https://api.trello.com/1/boards/" + board_id + "/lists"
     params = {'key': API_KEY, 'token': OAUTH_TOKEN}
  
+    allLists = []
+
     r = requests.get(url,params=params)
     for lists in r.json():
         list_id = ""
@@ -54,9 +56,15 @@ def findList(board_id):
                 list_id = value
             elif key == "name":
                 list_name = value
-        if list_name == LIST_NAME:
+        allLists.append({
+            'listId': list_id,
+            'listName': list_name
+        })   
+
+    for li in allLists: 
+        if li['listName'] == LIST_NAME:
             print("Found list.")
-            return list_id
+            return [li['listId'], allLists]
     
     print("Didn't find list.")
     return False
@@ -77,30 +85,34 @@ def findUsLabel(board_id):
                     print("Found label.")
                     return label_id
 
-def findCards(list_id):
+def findCards(all_lists):
    
-    url = "https://api.trello.com/1/lists/" + list_id + "/cards"
-    params = {'key': API_KEY, 'token': OAUTH_TOKEN}
-
     list_of_cards = []
 
-    r = requests.get(url,params=params)
-    for cards in r.json():
-        card_id = ""
-        card_name = ""
-        card_due = ""
-        card_desc = ""
+    for li in all_lists:
+        list_id = li["listId"]
 
-        for key, value in cards.items():
-            if key == "id":
-                card_id = value
-            elif key == "name":
-                card_name = value
-            elif key == "due":
-                card_due = value
-            elif key == "desc":
-                card_desc = value
-            list_of_cards.append([card_id, card_name, card_due, card_desc])
+        url = "https://api.trello.com/1/lists/" + list_id + "/cards"
+        params = {'key': API_KEY, 'token': OAUTH_TOKEN}
+
+        r = requests.get(url,params=params)
+
+        for cards in r.json():
+            card_id = ""
+            card_name = ""
+            card_due = ""
+            card_desc = ""
+
+            for key, value in cards.items():
+                if key == "id":
+                    card_id = value
+                elif key == "name":
+                    card_name = value
+                elif key == "due":
+                    card_due = value
+                elif key == "desc":
+                    card_desc = value
+                list_of_cards.append([card_id, card_name, card_due, card_desc])
 
     if len(list_of_cards) > 0:
         return list_of_cards
@@ -179,10 +191,12 @@ if __name__ == '__main__':
     file_path = args()
     board_id = findBoard()
     if board_id:
-        list_id = findList(board_id)
+        get_lists = findList(board_id)
+        list_id = get_lists[0]
+        all_lists = get_lists[1]
         USLabel_id = findUsLabel(board_id)
         if list_id and USLabel_id:
-            list_of_cards = findCards(list_id)
+            list_of_cards = findCards(all_lists)
             if list_of_cards:
                 new_cards = parseFile(file_path)
                 if new_cards:
