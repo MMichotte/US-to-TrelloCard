@@ -39,7 +39,7 @@ The tags are nothing more than html comments and are therefor not visible when d
     python3 src/addTrelloCards.py path/to/your/user-story-file
     ```
 
-## 🔍 Examples :
+## 🔍 Example :
 ![live example](example/img/live_example.gif)
 
 ## 🖌 Snippets : 
