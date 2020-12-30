@@ -56,3 +56,11 @@ Feel free to modify the code snippets to your needs but be sure to keep using th
 
 ## 🎯 GitHub Actions :
 For even more automation, you can use this script in a `Github Actions` workflow. Give a look at [this file](https://github.com/MMichotte/SLG_APP/blob/master/.github/workflows/Trello.yml) for a real-life example. 
+
+---
+### Release strategy :
+Each release has it's own tag representing the version of the code at the time of the release. Each tag has the following format : `vX.Y`.
+
+A release is made when :
+   - an issue/bug is fixed (`Y` value of the version/tag is incremented)
+   - a new feature is added (`X` value of the version/tag is incremented)
