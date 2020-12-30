@@ -35,7 +35,7 @@ The tags are nothing more than html comments and are therefor not visible when d
    > You can generate your own `api-key` and `oath-token` here : https://trello.com/app-key
 5. Run script :
     ```bash
-    python3 src/addTrelloCards.py path/to/your/user-story-file
+    python3 src/add_trello_cards.py path/to/your/user-story-file
     ```
 
 ## 🔍 Example :
