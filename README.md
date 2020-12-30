@@ -1,6 +1,6 @@
 # User-Story to Trello-Card
 
-[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/MMichotte/US-to-TrelloCard/blob/main/LICENSE) [![PyPi Python Versions](https://img.shields.io/pypi/pyversions/yt2mp3.svg)](https://pypi.python.org/pypi/yt2mp3/)
+[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/MMichotte/US-to-TrelloCard/blob/main/LICENSE) [![PyPi Python Versions](https://img.shields.io/pypi/pyversions/yt2mp3.svg)]()
 
 It has always been a struggle to translate a bunch of well-documented User-Stories written in a markdown or a text file to corresponding Trello cards. 
 
