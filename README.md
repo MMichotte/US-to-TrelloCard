@@ -1,6 +1,6 @@
 # User-Story to Trello-Card
 
-[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/MMichotte/US-to-TrelloCard/blob/main/LICENSE) [![PyPi Python Versions](https://img.shields.io/pypi/pyversions/yt2mp3.svg)]()
+[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/MMichotte/US-to-TrelloCard/blob/main/LICENSE) [![PyPi Python Versions](https://img.shields.io/pypi/pyversions/yt2mp3.svg)]() ![release](https://img.shields.io/github/v/release/MMichotte/US-to-TrelloCard) ![downloads](https://img.shields.io/github/downloads/MMichotte/US-to-TrelloCard/total)
 
 It has always been a struggle to translate a bunch of well-documented User-Stories written in a markdown or a text file to corresponding Trello cards. 
 
@@ -22,7 +22,10 @@ The tags are nothing more than html comments and are therefor not visible when d
 ## 🚀 Usage : 
 ⚠️ The following commands are written for `Unix` systems (Linux/OSX). If you're on a windows machine, please give a look at the python documentation to find the corresponding commands. 
 
-1. Download or clone this repository 
+1. Download and unzip the latest release [here](https://github.com/MMichotte/US-to-TrelloCard/releases) or use `wget`:
+   ```bash
+   wget https://github.com/$(wget https://github.com/MMichotte/US-to-TrelloCard/releases/latest -O - | egrep '/.*/.*/.*zip' -o)
+   ```
 2. In the `root` dir, create a `python virtual environment  ` (*Optional but recommended*)
     ```bash
     python3 -m venv venv #creating virtual env
