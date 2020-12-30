@@ -47,5 +47,7 @@ Feel free to modify the code snippets to your needs but be sure to keep using th
 
 > To start using the snippets, simply copy/paste the content of the `.vscode`folder of this repository into yours. 
 
+![snippets example](example/img/snippets_example.gif)
+
 ## 🎯 GitHub Actions :
 For even more automation, you can use this script in a `Github Actions` workflow. Give a look at [this file](https://github.com/MMichotte/SLG_APP/blob/master/.github/workflows/Trello.yml) for a real-life example. 
