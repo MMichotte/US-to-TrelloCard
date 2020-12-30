@@ -26,4 +26,4 @@
 ## Optimisation
 - [X] add labels based on .env specs
 - [X] refactor output for better debugging and information 
-- [ ] refactor code w/ [PEP 8 style guide](https://www.python.org/dev/peps/pep-0008/#function-and-variable-names)
+- [X] refactor code w/ [PEP 8 style guide](https://www.python.org/dev/peps/pep-0008/#function-and-variable-names)
