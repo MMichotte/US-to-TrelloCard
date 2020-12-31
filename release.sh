@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#This script doesn't release anything, but is used in combination with a github action workflow to create a new release!
+
 GITHUB_USER="MMICHOTTE"
 GITHUB_REPO="US-to-TrelloCard"
 
