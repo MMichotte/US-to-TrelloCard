@@ -40,8 +40,8 @@ done
 
 read -p $'Going from version : \e[31m'"${CUR_VERSION}"$' (latest)\e[0m to ----> \e[33m'"${NEW_VERSION}"$'\e[0m OK ? (y/n) ' choice
 case "$choice" in 
-  y|Y ) echo "yes";;
-  n|N ) echo "no";;
+  y|Y ) echo "";;
+  n|N ) exit;;
   * ) echo "invalid" && exit;;
 esac
 
