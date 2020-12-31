@@ -15,7 +15,7 @@ jobs:
 
       - name: Build project
         run: |
-          rm script.zip
+          rm -f US-to-TrelloCard.zip.zip
           zip US-to-TrelloCard.zip -r src requirements.txt example .envTemplate README.md LICENSE
 
       - name: Create Release
