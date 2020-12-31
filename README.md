@@ -59,8 +59,9 @@ For even more automation, you can use this script in a `Github Actions` workflow
 
 ---
 ### Release strategy :
-Each release has it's own tag representing the version of the code at the time of the release. Each tag has the following format : `vX.Y`.
+Each release has it's own tag representing the version of the code at the time of the release. Each tag has the following format : `vX.Y.Z`.
 
 A release is made when :
-   - an issue/bug is fixed (`Y` value of the version/tag is incremented)
-   - a new feature is added (`X` value of the version/tag is incremented)
+   - an issue/bug is fixed (`Z` value of the version/tag is incremented)
+   - a new feature is added (`Y` value of the version/tag is incremented)
+   - major updated (`X` value of the version/tag is incremented)
