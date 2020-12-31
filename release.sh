@@ -75,6 +75,7 @@ case $COUNT in
   0 ) NEW_VERSION+="0.0.1";;
   1 ) NEW_VERSION+="0.1";;
   2 ) NEW_VERSION+="1";;
+  3 ) ;;
   * ) exit;;
 esac
 
