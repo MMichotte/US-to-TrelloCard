@@ -38,6 +38,7 @@ The tags are nothing more than html comments and are therefor not visible when d
     ```
 4. Rename `.envTemplate` to `.env`and update it with your own information.
    > You can generate your own `api-key` and `oath-token` here : https://trello.com/app-key
+   ![key&token](example/img/key-token.png)
 5. Run script :
     ```bash
     python3 src/add_trello_cards.py -F path/to/your/user-story-file
